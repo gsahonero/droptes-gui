@@ -32,6 +32,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.bwVel1.pressed.connect(lambda: self.send(backward_p1))
         self.bwVel2.pressed.connect(lambda: self.send(backward_p2))
         
+        self.vel1Slider.valueChanged.connect(self.slider1Report)
+        self.vel2Slider.valueChanged.connect(self.slider2Report)
+
+        
         self.fwVel1.released.connect(lambda: self.send(forward_r1))
         self.fwVel2.released.connect(lambda: self.send(forward_r2))
         self.bwVel1.released.connect(lambda: self.send(backward_r1))
@@ -40,6 +44,17 @@ class MainWindow(QtWidgets.QMainWindow):
         self.serial = QtSerialPort.QSerialPort()
         self.serial.setBaudRate(9600)
         self.serial.readyRead.connect(self.receive)
+
+    def slider1Report(self):
+        self.vel1Status.setText(str(self.vel1Slider.value()))
+        text = "m1_"+str(self.vel1Slider.value())+'\n'
+        self.send(text)
+
+    def slider2Report(self):
+        self.vel2Status.setText(str(self.vel2Slider.value()))
+        text = "m2_"+str(self.vel2Slider.value())+'\n'
+        self.send(text)
+
 
     def send(self, command):
         if self.connectBox.isChecked():

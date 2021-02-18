@@ -243,7 +243,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>1000</string>
     </property>
    </widget>
    <widget class="QLabel" name="vel2Status">
@@ -256,7 +256,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>1000</string>
     </property>
    </widget>
    <widget class="QLabel" name="minVel1">
